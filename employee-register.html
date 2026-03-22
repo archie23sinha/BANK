@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Registration - ASP Bank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER/NAVIGATION -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-main">ASP</span>
+                        <span class="logo-sub">Bank</span>
+                    </div>
+                </div>
+
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="customer-login.html" class="nav-link login-btn">Login</a>
+                    <a href="customer-create.html" class="nav-link cta-btn">Open Account</a>
+                </div>
+
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-content">
+            <a href="index.html" class="mobile-nav-link">Home</a>
+            <a href="#services" class="mobile-nav-link">Services</a>
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+            <a href="customer-login.html" class="mobile-nav-link login-btn">Login</a>
+            <a href="customer-create.html" class="mobile-nav-link cta-btn">Open Account</a>
+        </div>
+    </div>
+
+    <!-- EMPLOYEE REGISTRATION FORM -->
+    <div class="auth-container">
+        <div class="auth-card register-card">
+            <div class="auth-header">
+                <i class="fas fa-users-cog"></i>
+                <h2>Employee Registration</h2>
+                <p>Join our team and help manage banking operations</p>
+            </div>
+
+            <form id="employee-register-form" class="auth-form">
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h3><i class="fas fa-user"></i> Personal Information</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fname">First Name *</label>
+                            <div class="input-group">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="fname" placeholder="Enter first name" required>
+                            </div>
+                            <div class="error" id="fnameError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lname">Last Name *</label>
+                            <div class="input-group">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="lname" placeholder="Enter last name" required>
+                            </div>
+                            <div class="error" id="lnameError"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <div class="input-group">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="email" placeholder="Enter work email" required>
+                            </div>
+                            <div class="error" id="emailError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <div class="input-group">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="phone" placeholder="Enter phone number" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Security -->
+                <div class="form-section">
+                    <h3><i class="fas fa-shield-alt"></i> Account Security</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Password *</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="password" placeholder="Create a strong password" required>
+                            </div>
+                            <div class="error" id="passwordError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm Password *</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+                            </div>
+                            <div class="error" id="confirm-passwordError"></div>
+                        </div>
+                    </div>
+
+                    <div class="password-requirements">
+                        <p><strong>Password must contain:</strong></p>
+                        <ul>
+                            <li>At least 6 characters</li>
+                            <li>One uppercase letter</li>
+                            <li>One lowercase letter</li>
+                            <li>One number</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Employment Details -->
+                <div class="form-section">
+                    <h3><i class="fas fa-briefcase"></i> Employment Details</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="department">Department *</label>
+                            <div class="input-group">
+                                <i class="fas fa-building"></i>
+                                <select id="department" required>
+                                    <option value="">Select Department</option>
+                                    <option value="customer-service">Customer Service</option>
+                                    <option value="operations">Operations</option>
+                                    <option value="finance">Finance</option>
+                                    <option value="it">Information Technology</option>
+                                    <option value="compliance">Compliance</option>
+                                    <option value="management">Management</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="position">Position *</label>
+                            <div class="input-group">
+                                <i class="fas fa-user-tie"></i>
+                                <select id="position" required>
+                                    <option value="">Select Position</option>
+                                    <option value="associate">Associate</option>
+                                    <option value="senior-associate">Senior Associate</option>
+                                    <option value="manager">Manager</option>
+                                    <option value="senior-manager">Senior Manager</option>
+                                    <option value="director">Director</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start-date">Expected Start Date *</label>
+                        <div class="input-group">
+                            <i class="fas fa-calendar"></i>
+                            <input type="date" id="start-date" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Employee ID (Auto-generated) -->
+                <div class="form-section">
+                    <div class="employee-id-display">
+                        <label>Employee ID (Auto-generated)</label>
+                        <div class="input-group">
+                            <i class="fas fa-id-badge"></i>
+                            <input type="text" id="empId" readonly placeholder="Will be generated after registration">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="terms" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="#" class="terms-link">Employee Handbook</a> and <a href="#" class="terms-link">Company Policies</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="auth-btn">
+                    <i class="fas fa-user-plus"></i>
+                    Register as Employee
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Already registered?
+                    <a href="customer-login.html" class="auth-link">Sign In</a>
+                </p>
+                <p>Looking for customer services?
+                    <a href="customer-create.html" class="auth-link">Customer Registration</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- EMPLOYEE BENEFITS -->
+        <div class="benefits-info">
+            <div class="benefit-card">
+                <i class="fas fa-handshake"></i>
+                <h4>Career Growth</h4>
+                <p>Opportunities for advancement and professional development</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-heart"></i>
+                <h4>Work-Life Balance</h4>
+                <p>Flexible working hours and comprehensive benefits</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-users"></i>
+                <h4>Team Environment</h4>
+                <p>Collaborative workplace with talented professionals</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="auth-error" class="error-message"></div>
+
+    <script src="auth.js"></script>
+    <script>
+        // Generate employee ID preview
+        function generateEmployeeId() {
+            const timestamp = Date.now().toString().slice(-6);
+            const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+            return `EMP${timestamp}${random}`;
+        }
+
+        document.getElementById('employee-register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Clear previous errors
+            document.querySelectorAll('.error').forEach(el => el.textContent = '');
+
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Validate password match
+            if (password !== confirmPassword) {
+                document.getElementById('confirm-passwordError').textContent = 'Passwords do not match';
+                document.getElementById('confirm-password').classList.add('error-border');
+                return;
+            }
+
+            // Validate password strength
+            if (!validatePasswordStrength(password)) {
+                document.getElementById('passwordError').textContent = 'Password must contain at least 6 characters, 1 uppercase, 1 lowercase, and 1 number';
+                document.getElementById('password').classList.add('error-border');
+                return;
+            }
+
+            const employeeData = {
+                name: `${document.getElementById('fname').value} ${document.getElementById('lname').value}`,
+                email: document.getElementById('email').value,
+                password: password,
+                phone: document.getElementById('phone').value,
+                department: document.getElementById('department').value,
+                position: document.getElementById('position').value,
+                startDate: document.getElementById('start-date').value
+            };
+
+            try {
+                const newEmployee = auth.registerEmployee(employeeData);
+                document.getElementById('empId').value = newEmployee.employeeId;
+                showSuccess(`Employee registered successfully! Your Employee ID is: ${newEmployee.employeeId}`);
+                setTimeout(() => {
+                    window.location.href = 'customer-login.html';
+                }, 3000);
+            } catch (error) {
+                showError(error.message);
+            }
+        });
+
+        function validatePasswordStrength(password) {
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasNumbers = /\d/.test(password);
+            const hasMinLength = password.length >= 6;
+
+            return hasUpperCase && hasLowerCase && hasNumbers && hasMinLength;
+        }
+
+        function showSuccess(message) {
+            const errorDiv = document.getElementById('auth-error');
+            errorDiv.textContent = message;
+            errorDiv.className = 'success-message';
+            errorDiv.style.display = 'block';
+        }
+
+        // Generate preview employee ID on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('empId').value = generateEmployeeId();
+        });
+
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.remove('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

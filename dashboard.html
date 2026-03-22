@@ -1,0 +1,428 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - ASP Bank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER/NAVIGATION -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-main">ASP</span>
+                        <span class="logo-sub">Bank</span>
+                    </div>
+                </div>
+
+                <div class="nav-menu">
+                    <a href="#dashboard" class="nav-link">Dashboard</a>
+                    <a href="#transactions" class="nav-link">Transactions</a>
+                    <a href="#profile" class="nav-link">Profile</a>
+                    <button class="nav-link logout-btn" onclick="auth.logout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-content">
+            <a href="#dashboard" class="mobile-nav-link">Dashboard</a>
+            <a href="#transactions" class="mobile-nav-link">Transactions</a>
+            <a href="#profile" class="mobile-nav-link">Profile</a>
+            <button class="mobile-nav-link logout-btn" onclick="auth.logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- DASHBOARD HEADER -->
+        <div class="dashboard-header">
+            <h1 id="dashboard-title">Customer Dashboard</h1>
+            <p id="dashboard-subtitle">Manage your banking needs with ease</p>
+            <div class="dashboard-date">
+                <i class="fas fa-calendar-alt"></i>
+                <span id="current-date"></span>
+            </div>
+        </div>
+
+        <!-- ACCOUNT OVERVIEW -->
+        <div class="account-overview">
+            <div class="overview-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-credit-card"></i> Monthly Spending</h3>
+                </div>
+                <div class="balance-amount small">
+                    <span>Rs. </span>
+                    <span id="monthly-spending">12,450.00</span>
+                </div>
+                <div class="spending-breakdown">
+                    <div class="spending-item">
+                        <span>Shopping</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                        <span>Rs. 8,000</span>
+                    </div>
+                    <div class="spending-item">
+                        <span>Bills</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 25%"></div>
+                        </div>
+                        <span>Rs. 3,200</span>
+                    </div>
+                    <div class="spending-item">
+                        <span>Others</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 10%"></div>
+                        </div>
+                        <span>Rs. 1,250</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DASHBOARD GRID -->
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-hashtag"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Account Number</h3>
+                    <p id="account-number">Loading...</p>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Account Holder</h3>
+                    <p id="account-holder">Loading...</p>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Email</h3>
+                    <p id="account-email">Loading...</p>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Phone</h3>
+                    <p id="account-phone">Loading...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <div class="quick-actions">
+            <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+            <div class="actions-grid">
+                <div class="action-btn" onclick="openTransferModal()">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Transfer Money</span>
+                </div>
+                <div class="action-btn" onclick="showSection('transactions')">
+                    <i class="fas fa-history"></i>
+                    <span>View Transactions</span>
+                </div>
+                <div class="action-btn" onclick="showSection('profile')">
+                    <i class="fas fa-user-edit"></i>
+                    <span>Update Profile</span>
+                </div>
+                <div class="action-btn" onclick="showSection('notifications')">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </div>
+                <div class="action-btn primary" onclick="openTransferModal()">
+                    <i class="fas fa-plus"></i>
+                    <span>Add Money</span>
+                </div>
+                <div class="action-btn" onclick="showSection('insights')">
+                    <i class="fas fa-chart-line"></i>
+                    <span>View Insights</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RECENT TRANSACTIONS -->
+        <div class="recent-transactions">
+            <div class="section-header">
+                <h2><i class="fas fa-history"></i> Recent Transactions</h2>
+                <button class="view-all-btn" onclick="showAllTransactions()">View All</button>
+            </div>
+            <div class="transactions-list" id="transactions-list">
+                <div class="transaction-item">
+                    <div class="transaction-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <h4>Online Shopping</h4>
+                        <p>Amazon Purchase</p>
+                        <span class="transaction-date">Dec 28, 2:30 PM</span>
+                    </div>
+                    <div class="transaction-amount negative">
+                        -Rs. 2,499.00
+                    </div>
+                </div>
+
+                <div class="transaction-item">
+                    <div class="transaction-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <h4>Restaurant</h4>
+                        <p>Dinner at The Grand</p>
+                        <span class="transaction-date">Dec 27, 8:15 PM</span>
+                    </div>
+                    <div class="transaction-amount negative">
+                        -Rs. 1,200.00
+                    </div>
+                </div>
+
+                <div class="transaction-item">
+                    <div class="transaction-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <h4>Salary Credit</h4>
+                        <p>Monthly Salary</p>
+                        <span class="transaction-date">Dec 25, 10:00 AM</span>
+                    </div>
+                    <div class="transaction-amount positive">
+                        +Rs. 45,000.00
+                    </div>
+                </div>
+
+                <div class="transaction-item">
+                    <div class="transaction-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <h4>Mobile Recharge</h4>
+                        <p>Prepaid Recharge</p>
+                        <span class="transaction-date">Dec 20, 4:20 PM</span>
+                    </div>
+                    <div class="transaction-amount negative">
+                        -Rs. 299.00
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTIFICATIONS -->
+        <div class="notifications-section">
+            <div class="section-header">
+                <h2><i class="fas fa-bell"></i> Notifications</h2>
+                <button class="view-all-btn" onclick="showAllNotifications()">View All</button>
+            </div>
+            <div class="notifications-list">
+                <div class="notification-item unread">
+                    <div class="notification-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h4>Security Alert</h4>
+                        <p>New login detected from Chrome browser</p>
+                        <span class="notification-time">2 hours ago</span>
+                    </div>
+                    <div class="notification-status">
+                        <span class="status-dot"></span>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h4>Special Offer</h4>
+                        <p>Get 5% cashback on online shopping this month</p>
+                        <span class="notification-time">1 day ago</span>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h4>Bill Payment Due</h4>
+                        <p>Your electricity bill of Rs. 2,450 is due tomorrow</p>
+                        <span class="notification-time">2 days ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INSIGHTS -->
+        <div class="insights-section">
+            <h2><i class="fas fa-chart-pie"></i> Financial Insights</h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <h3>Spending Trends</h3>
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="insight-chart">
+                        <div class="chart-bar" style="height: 40%"></div>
+                        <div class="chart-bar active" style="height: 65%"></div>
+                        <div class="chart-bar" style="height: 45%"></div>
+                        <div class="chart-bar" style="height: 80%"></div>
+                        <div class="chart-bar" style="height: 55%"></div>
+                        <div class="chart-bar" style="height: 70%"></div>
+                    </div>
+                    <div class="chart-labels">
+                        <span>Jan</span>
+                        <span>Feb</span>
+                        <span>Mar</span>
+                        <span>Apr</span>
+                        <span>May</span>
+                        <span>Jun</span>
+                    </div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <h3>Savings Goals</h3>
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <div class="goals-list">
+                        <div class="goal-item">
+                            <span>Emergency Fund</span>
+                            <div class="goal-progress">
+                                <div class="goal-fill" style="width: 75%"></div>
+                            </div>
+                            <span>₹75,000 / ₹1,00,000</span>
+                        </div>
+                        <div class="goal-item">
+                            <span>Vacation</span>
+                            <div class="goal-progress">
+                                <div class="goal-fill" style="width: 60%"></div>
+                            </div>
+                            <span>₹30,000 / ₹50,000</span>
+                        </div>
+                        <div class="goal-item">
+                            <span>New Car</span>
+                            <div class="goal-progress">
+                                <div class="goal-fill" style="width: 40%"></div>
+                            </div>
+                            <span>₹2,00,000 / ₹5,00,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRANSFER MODAL -->
+    <div id="transfer-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-exchange-alt"></i> Transfer Money</h3>
+                <span class="modal-close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="transfer-form">
+                    <div class="form-group">
+                        <label>Recipient Account Number</label>
+                        <div class="input-group">
+                            <i class="fas fa-hashtag"></i>
+                            <input type="text" id="recipient-account" placeholder="Enter account number" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount (Rs.)</label>
+                        <div class="input-group">
+                            <i class="fas fa-rupee-sign"></i>
+                            <input type="number" id="transfer-amount" placeholder="Enter amount" min="1" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description (Optional)</label>
+                        <div class="input-group">
+                            <i class="fas fa-comment"></i>
+                            <input type="text" id="transfer-description" placeholder="What's this for?">
+                        </div>
+                    </div>
+                    <button type="submit" class="modal-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Transfer Money
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="auth-error" class="error-message"></div>
+
+    <script src="auth.js"></script>
+    <script src="dashboard.js"></script>
+
+    <script>
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.remove('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
+</body>
+</html>s
