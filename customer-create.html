@@ -57,7 +57,7 @@
                             <label for="name">Full Name *</label>
                             <div class="input-group">
                                 <i class="fas fa-user"></i>
-                                <input type="text" id="name" placeholder="Enter your full name" required>
+                                <input type="text" id="name" placeholder="Enter your full name" pattern="[A-Za-z ]{3,50}" title="Name must contain only alphabets and spaces (3-50 characters)" required>
                             </div>
                         </div>
 
@@ -93,7 +93,7 @@
                             <label for="dob">Date of Birth *</label>
                             <div class="input-group">
                                 <i class="fas fa-calendar"></i>
-                                <input type="date" id="dob" required>
+                                <input type="date" id="dob" max="2006-12-31" title="You must be at least 18 years old" required>
                             </div>
                         </div>
 
@@ -121,7 +121,7 @@
                             <label for="contact">Phone Number *</label>
                             <div class="input-group">
                                 <i class="fas fa-phone"></i>
-                                <input type="tel" id="contact" placeholder="Enter phone number" required>
+                                <input type="tel" id="contact" placeholder="Enter phone number" pattern="[0-9]{10}" title="Phone number must be exactly 10 digits" required>
                             </div>
                         </div>
 
@@ -229,8 +229,8 @@
                 return;
             }
 
-            if (password.length < 6) {
-                showError('Password must be at least 6 characters long');
+            if (!validatePasswordStrength(password)) {
+                showError('Password must contain at least 6 characters, 1 uppercase letter, 1 lowercase letter, and 1 number');
                 return;
             }
 
@@ -263,6 +263,15 @@
             errorDiv.textContent = message;
             errorDiv.className = 'success-message';
             errorDiv.style.display = 'block';
+        }
+
+        function validatePasswordStrength(password) {
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasNumbers = /\d/.test(password);
+            const hasMinLength = password.length >= 6;
+
+            return hasUpperCase && hasLowerCase && hasNumbers && hasMinLength;
         }
     </script>
 
